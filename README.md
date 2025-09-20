@@ -57,7 +57,6 @@ EOF
 cd /home/ubuntu/docker_nginx
 docker-compose up --build -d
 
-
 
 ✅ Verification Commands
 docker --version
