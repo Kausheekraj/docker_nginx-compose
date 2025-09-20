@@ -36,7 +36,7 @@ curl -L "https://github.com/docker/compose/releases/download/v2.24.6/docker-comp
 chmod +x /usr/local/bin/docker-compose
 
 mkdir -p /home/ubuntu/docker_nginx/html
-echo "<h1>Kausheek’s Custom Nginx</h1>" > /home/ubuntu/docker_nginx/html/index.html
+echo "<h1>Hi from Custom Nginx</h1>" > /home/ubuntu/docker_nginx/html/index.html
 
 cat > /home/ubuntu/docker_nginx/Dockerfile <<EOF
 FROM nginx:latest
