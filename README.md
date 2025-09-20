@@ -1,6 +1,6 @@
 # docker_nginx-compose
-📄 README.md — Kausheek’s Custom Nginx with Docker Compose
-# 🚀 Docker Task-3: Kausheek’s Custom Nginx Deployment
+
+# 🚀 Docker Task-  Custom Nginx Deployment
 
 This project builds and deploys a custom Nginx container using Docker Compose on an AWS EC2 instance. It demonstrates containerization, image customization, volume mounting, and automated provisioning via EC2 user data.
 
