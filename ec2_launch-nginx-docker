@@ -1,0 +1,41 @@
+#!/bin/bash
+set -e
+
+# 1. Update package list and install Docker
+apt-get update -y
+apt-get install -y docker.io curl
+
+# 2. Enable and start Docker service
+systemctl enable docker
+systemctl start docker
+
+# 3. Install Docker Compose (v2.24.6)
+curl -L "https://github.com/docker/compose/releases/download/v2.24.6/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+# 4. Create project folder and HTML content
+mkdir -p /home/ubuntu/docker_nginx/html
+echo "<h1>Hello from Custom Nginx!</h1>" > /home/ubuntu/docker_nginx/html/index.html
+
+# 5. Create Dockerfile for custom Nginx image
+cat > /home/ubuntu/docker_nginx/Dockerfile <<EOF
+FROM nginx:latest
+COPY html/ /usr/share/nginx/html
+EOF
+
+# 6. Create docker-compose.yml with bind mount
+cat > /home/ubuntu/docker_nginx/docker-compose.yml <<EOF
+version: '3.8'
+
+services:
+  nginx:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/var/opt/nginx
+EOF
+
+# 7. Navigate to project folder and launch container
+cd /home/ubuntu/docker_nginx
+docker-compose up --build -d
